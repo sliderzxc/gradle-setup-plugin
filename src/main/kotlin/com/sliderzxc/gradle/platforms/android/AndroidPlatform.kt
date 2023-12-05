@@ -21,8 +21,3 @@ fun NamedDomainObjectContainer<out KotlinSourceSet>.platformAndroid(): PropertyD
          ReadOnlyProperty { _, _ -> platform }
      }
 }
-
-
-infix fun NamedDomainObjectContainer<out KotlinSourceSet>.by(a: AndroidSourceSetBundle) {
-    this by a
-}
