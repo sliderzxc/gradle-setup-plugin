@@ -1,4 +1,4 @@
-package com.sliderzxc.gradle.plugin
+package com.sliderzxc.gradle
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project
