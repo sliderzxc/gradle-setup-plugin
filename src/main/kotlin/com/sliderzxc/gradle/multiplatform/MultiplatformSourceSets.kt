@@ -34,35 +34,36 @@ class DefaultMultiplatformSourceSets(
 
     override val common: SourceSetBundle by bundle()
 
-    override val allSet: Set<SourceSetBundle> =
-        targets.toSourceSetBundles()
+    override val allSet: Set<SourceSetBundle> = targets.toSourceSetBundles()
 
-    override val javaSet: Set<SourceSetBundle> =
-        targets
-            .filter { it.platformType in setOf(KotlinPlatformType.androidJvm, KotlinPlatformType.jvm) }
-            .toSourceSetBundles()
+    override val javaSet: Set<SourceSetBundle> = targets.filter {
+        it.platformType in setOf(KotlinPlatformType.androidJvm, KotlinPlatformType.jvm)
+    }.toSourceSetBundles()
 
     override val nativeSet: Set<SourceSetBundle> = nativeSourceSets()
     override val linuxSet: Set<SourceSetBundle> = nativeSourceSets(Family.LINUX)
-    override val darwinSet: Set<SourceSetBundle> = nativeSourceSets(Family.IOS, Family.OSX, Family.WATCHOS, Family.TVOS)
+    override val darwinSet: Set<SourceSetBundle> = nativeSourceSets(
+        Family.IOS, Family.OSX, Family.WATCHOS, Family.TVOS
+    )
     override val iosSet: Set<SourceSetBundle> = nativeSourceSets(Family.IOS)
     override val watchosSet: Set<SourceSetBundle> = nativeSourceSets(Family.WATCHOS)
     override val tvosSet: Set<SourceSetBundle> = nativeSourceSets(Family.TVOS)
     override val macosSet: Set<SourceSetBundle> = nativeSourceSets(Family.OSX)
 
-    private fun nativeSourceSets(vararg families: Family = Family.values()): Set<SourceSetBundle> =
-        targets
-            .filterIsInstance<KotlinNativeTarget>()
+    private fun nativeSourceSets(vararg families: Family = Family.values()): Set<SourceSetBundle> {
+        return targets.filterIsInstance<KotlinNativeTarget>()
             .filter { it.konanTarget.family in families }
             .toSourceSetBundles()
+    }
 
-    private fun Iterable<KotlinTarget>.toSourceSetBundles(): Set<SourceSetBundle> =
-        filter { it.platformType != KotlinPlatformType.common }
+    private fun Iterable<KotlinTarget>.toSourceSetBundles(): Set<SourceSetBundle> {
+        return filter { it.platformType != KotlinPlatformType.common }
             .map { it.getSourceSetBundle() }
             .toSet()
+    }
 
-    private fun KotlinTarget.getSourceSetBundle(): SourceSetBundle =
-        if (compilations.isEmpty()) {
+    private fun KotlinTarget.getSourceSetBundle(): SourceSetBundle {
+        return if (compilations.isEmpty()) {
             bundle(name)
         } else {
             SourceSetBundle(
@@ -70,4 +71,5 @@ class DefaultMultiplatformSourceSets(
                 test = compilations.getByName("test").defaultSourceSet,
             )
         }
+    }
 }

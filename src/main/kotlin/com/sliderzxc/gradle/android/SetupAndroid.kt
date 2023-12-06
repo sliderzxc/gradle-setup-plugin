@@ -1,8 +1,6 @@
 package com.sliderzxc.gradle.android
 
 import com.android.build.gradle.BaseExtension
-import com.android.build.gradle.internal.lint.AndroidLintTask
-import com.android.build.gradle.internal.lint.AndroidLintTextOutputTask
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
