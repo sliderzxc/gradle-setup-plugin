@@ -6,8 +6,8 @@ enum class Platform {
     Android, Jvm, Js
 }
 
-internal fun Set<Platform>.toTargets(): MultiplatformConfigurator {
-    if (this.isEmpty()) error("Platforms not found")
+internal fun Set<Platform>?.toTargets(): MultiplatformConfigurator {
+    if (this.isNullOrEmpty()) error("Platforms not found")
 
     return MultiplatformConfigurator {
         for (platform in this@toTargets) {

@@ -1,5 +1,9 @@
 package com.sliderzxc.gradle.multiplatform
 
+import com.sliderzxc.gradle.android.setupAndroidCommon
+import com.sliderzxc.gradle.android.setupAndroidLibrary
+import com.sliderzxc.gradle.defaults.requireDefaults
+import com.sliderzxc.gradle.multiplatform.config.MultiplatformConfig
 import com.sliderzxc.gradle.multiplatform.platforms.Platform
 import com.sliderzxc.gradle.multiplatform.platforms.toTargets
 import org.gradle.api.Project
@@ -7,9 +11,9 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.dsl.kotlinExtension
 
 fun Project.setupMultiplatform(
-    vararg platforms: Platform,
+    multiplatformConfig: MultiplatformConfig? = requireDefaults()
 ) {
-    val targets = platforms.toSet().toTargets()
+    val targets = multiplatformConfig?.platforms.toTargets()
 
     multiplatformExtension.apply {
         with(targets) { invoke() }
@@ -32,6 +36,8 @@ fun Project.setupMultiplatform(
             }
         }
     }
+
+    if (multiplatformConfig?.platforms?.contains(Platform.Android) == true) setupAndroidLibrary()
 }
 
 internal val Project.multiplatformExtension: KotlinMultiplatformExtension
