@@ -1,6 +1,5 @@
 package com.sliderzxc.gradle.multiplatform
 
-import com.sliderzxc.gradle.android.setupAndroidCommon
 import com.sliderzxc.gradle.android.setupAndroidLibrary
 import com.sliderzxc.gradle.defaults.requireDefaults
 import com.sliderzxc.gradle.multiplatform.config.MultiplatformConfig
