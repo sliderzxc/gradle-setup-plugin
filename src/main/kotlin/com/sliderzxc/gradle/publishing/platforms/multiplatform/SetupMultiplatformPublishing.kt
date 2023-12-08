@@ -24,6 +24,8 @@ fun Project.setupMultiplatformPublishing(config: PublishingConfig) {
             setupPublicationPom(config)
         }
     }
+
+    setupPublicationRepository(config)
 }
 
 private fun MavenPublication.setupPublicationPom(config: PublishingConfig) {
