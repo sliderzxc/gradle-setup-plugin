@@ -13,7 +13,7 @@ import org.gradle.kotlin.dsl.withType
 import org.gradle.plugins.signing.Sign
 import org.gradle.plugins.signing.SigningExtension
 
-fun Project.setupMultiplatformPublishing(config: PublishingConfig) {
+internal fun Project.setupMultiplatformPublishing(config: PublishingConfig) {
     applyMavenPublishPlugin()
     applySigningPlugin()
 

@@ -1,4 +1,4 @@
-package com.sliderzxc.gradle.publishing
+package com.sliderzxc.gradle.publishing.platforms.android.utils
 
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.findByType
