@@ -33,12 +33,11 @@ dependencies {
     compileOnly("org.jetbrains.kotlinx:binary-compatibility-validator:0.13.2")
     compileOnly("io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.23.3")
     compileOnly("org.redundent:kotlin-xml-builder:1.9.1")
-    testImplementation(kotlin("test"))
 }
 
 gradlePlugin {
     plugins.create(project.name) {
         id = "com.sliderzxc.gradle.setup"
-        implementationClass = "com.sliderzxc.gradle.plugin.GradleSetupPlugin"
+        implementationClass = "com.sliderzxc.gradle.GradleSetupPlugin"
     }
 }

@@ -1,4 +1,4 @@
-package com.sliderzxc.gradle.plugin
+package com.sliderzxc.gradle
 
 import com.sliderzxc.gradle.defaults.requireDefaults
 import com.sliderzxc.gradle.localization.config.LocalizationConfig
