@@ -38,6 +38,6 @@ dependencies {
 gradlePlugin {
     plugins.create(project.name) {
         id = "com.sliderzxc.gradle.setup"
-        implementationClass = "com.sliderzxc.gradle.GradleSetupPlugin"
+        implementationClass = "com.sliderzxc.gradle.plugin.GradleSetupPlugin"
     }
 }
