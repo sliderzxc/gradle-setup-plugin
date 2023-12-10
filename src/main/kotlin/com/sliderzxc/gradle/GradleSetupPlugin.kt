@@ -11,8 +11,6 @@ class GradleSetupPlugin : Plugin<Project> {
         val languageList = target.requireDefaults<LocalizationConfig>()
         target.tasks.register(
             "generateLocalizations", LocalizationTask::class.java
-        ) {
-            localizationConfig = languageList.languages.toList()
-        }
+        )
     }
 }
