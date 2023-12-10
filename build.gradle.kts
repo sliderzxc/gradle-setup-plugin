@@ -32,6 +32,7 @@ dependencies {
     compileOnly("org.jetbrains.intellij.plugins:gradle-intellij-plugin:1.15.0")
     compileOnly("org.jetbrains.kotlinx:binary-compatibility-validator:0.13.2")
     compileOnly("io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.23.3")
+    compileOnly("org.redundent:kotlin-xml-builder:1.9.1")
     testImplementation(kotlin("test"))
 }
 

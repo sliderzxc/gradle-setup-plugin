@@ -8,7 +8,7 @@ import org.gradle.api.Project
 fun Project.setupLocalization(
     localizationConfig: LocalizationConfig = requireDefaults()
 ) {
-    when(localizationConfig.type) {
-        LocalizationType.XML -> {  }
-    }
+//    when(localizationConfig.type) {
+//        LocalizationType.XML -> {  }
+//    }
 }

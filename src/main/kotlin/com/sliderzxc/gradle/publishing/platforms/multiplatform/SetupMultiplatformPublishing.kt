@@ -7,11 +7,8 @@ import com.sliderzxc.gradle.publishing.platforms.multiplatform.repository.setupP
 import org.gradle.api.Project
 import org.gradle.api.publish.PublishingExtension
 import org.gradle.api.publish.maven.MavenPublication
-import org.gradle.api.publish.maven.tasks.AbstractPublishToMaven
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.withType
-import org.gradle.plugins.signing.Sign
-import org.gradle.plugins.signing.SigningExtension
 
 internal fun Project.setupMultiplatformPublishing(config: PublishingConfig) {
     applyMavenPublishPlugin()
