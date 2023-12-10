@@ -9,7 +9,8 @@ internal abstract class LocalizationTask : DefaultTask() {
     @TaskAction
     fun translate() {
         //project.requireDefaults<>()
-        val mainFile = File(project.path+"/buildinggg")
-        mainFile.writeText("Hello Localization Plugin")
+        val mProjDir = project.layout.projectDirectory.toString()
+        val localizedValuesDir = File(mProjDir, "src/main/res/values/main.txt")
+        localizedValuesDir.writeText("Hello Localization Plugin")
     }
 }
