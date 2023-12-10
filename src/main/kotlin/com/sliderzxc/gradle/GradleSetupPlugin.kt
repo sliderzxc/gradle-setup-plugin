@@ -8,7 +8,6 @@ import org.gradle.api.Project
 
 class GradleSetupPlugin : Plugin<Project> {
     override fun apply(target: Project) {
-        val languageList = target.requireDefaults<LocalizationConfig>()
         target.tasks.register(
             "generateLocalizations", LocalizationTask::class.java
         )
