@@ -1,7 +1,7 @@
 package com.sliderzxc.gradle.localization.core.xml.parser
 
-import org.gradle.internal.impldep.org.codehaus.plexus.util.xml.pull.MXParser
-import org.gradle.internal.impldep.org.codehaus.plexus.util.xml.pull.XmlPullParser
+import org.xmlpull.v1.XmlPullParser
+import org.xmlpull.v1.XmlPullParserFactory
 import java.io.StringReader
 
 object XmlParser {
@@ -9,7 +9,8 @@ object XmlParser {
         val stringList = mutableListOf<String>()
 
         try {
-            val xmlPullParser: XmlPullParser = MXParser()
+            val factory = XmlPullParserFactory.newInstance()
+            val xmlPullParser: XmlPullParser = factory.newPullParser()
             xmlPullParser.setInput(StringReader(xmlString))
 
             var eventType = xmlPullParser.eventType
@@ -45,17 +46,17 @@ object XmlParser {
     }
 }
 
-//fun main() {
-//    val xmlString = """
-//        <resources>
-//            <string name="app_name">FitTrack</string>
-//            <string name="app_name1">FitTrack1</string>
-//        </resources>
-//    """.trimIndent()
-//
-//    val stringList = parseXml(xmlString)
-//
-//    for (value in stringList) {
-//        println(value)
-//    }
-//}
+ fun main() {
+     val xmlString = """
+         <resources>
+             <string name="app_name">FitTrack</string>
+             <string name="app_name1">FitTrack1</string>
+         </resources>
+     """.trimIndent()
+
+     val stringList = XmlParser.parseXml(xmlString)
+
+     for (value in stringList) {
+         println(value)
+     }
+ }
