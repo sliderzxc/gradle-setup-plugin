@@ -1,8 +1,6 @@
 package com.sliderzxc.gradle
 
-import com.sliderzxc.gradle.defaults.requireDefaults
-import com.sliderzxc.gradle.localization.config.LocalizationConfig
-import com.sliderzxc.gradle.localization.task.LocalizationTask
+import com.sliderzxc.gradle.localization.core.task.LocalizationTask
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
