@@ -1,4 +1,4 @@
-package com.sliderzxc.gradle.localization.config
+package com.sliderzxc.gradle.localization.core.config
 
 enum class LocalizationLanguage {
     Ukrainian,

@@ -3,7 +3,7 @@ package com.sliderzxc.gradle.defaults
 import com.sliderzxc.gradle.android.config.AndroidConfig
 import com.sliderzxc.gradle.defaults.extra.setExtraDefaults
 import com.sliderzxc.gradle.defaults.extra.setExtraLocalization
-import com.sliderzxc.gradle.localization.config.LocalizationConfig
+import com.sliderzxc.gradle.localization.core.config.LocalizationConfig
 import com.sliderzxc.gradle.multiplatform.config.MultiplatformConfig
 import com.sliderzxc.gradle.publishing.config.PublishingConfig
 import org.gradle.api.Project

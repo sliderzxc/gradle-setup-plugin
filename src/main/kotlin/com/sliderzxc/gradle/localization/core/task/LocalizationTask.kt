@@ -1,4 +1,4 @@
-package com.sliderzxc.gradle.localization.task
+package com.sliderzxc.gradle.localization.core.task
 
 import com.sliderzxc.gradle.defaults.requireLocalizations
 import org.gradle.api.DefaultTask
