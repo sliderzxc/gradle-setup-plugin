@@ -8,4 +8,4 @@ import org.gradle.api.Project
 
 fun Project.setupLocalization(
     localizationConfig: LocalizationConfig? = getLocalizationConfig()
-) = setExtraLocalization(localizationConfig)
+) = localizationConfig?.let { config -> setExtraLocalization(config) }
