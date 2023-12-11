@@ -67,7 +67,7 @@ class DefaultMultiplatformSourceSets(
             bundle(name)
         } else {
             SourceSetBundle(
-                main = compilations.getByName("com.sliderzxc.gradle.localization.core.translator.com.sliderzxc.gradle.localization.core.translator.main").defaultSourceSet,
+                main = compilations.getByName("main").defaultSourceSet,
                 test = compilations.getByName("test").defaultSourceSet,
             )
         }
