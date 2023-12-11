@@ -18,7 +18,7 @@ internal fun Project.getLocalizationConfig(): LocalizationConfig? {
 }
 
 internal fun Project.setExtraLocalization(localizationConfig: LocalizationConfig?) {
-    extra.set(ExtraKeyPath.LOCALIZATIONS_KEY.key, localizationConfig)
+    localizationConfig?.let { config -> extra.set(ExtraKeyPath.LOCALIZATIONS_KEY.key, config) }
 }
 
 internal fun Project.setExtraDefaults(defaults: List<Any>) {
