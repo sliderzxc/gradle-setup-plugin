@@ -33,6 +33,10 @@ dependencies {
     compileOnly("org.jetbrains.kotlinx:binary-compatibility-validator:0.13.2")
     compileOnly("io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.23.3")
     compileOnly("org.redundent:kotlin-xml-builder:1.9.1")
+
+    implementation("com.squareup.okhttp3:okhttp:4.11.0")
+    implementation("com.google.code.gson:gson:2.10.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0-RC")
 }
 
 gradlePlugin {
