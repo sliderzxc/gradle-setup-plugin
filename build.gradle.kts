@@ -32,8 +32,8 @@ dependencies {
     compileOnly("org.jetbrains.intellij.plugins:gradle-intellij-plugin:1.15.0")
     compileOnly("org.jetbrains.kotlinx:binary-compatibility-validator:0.13.2")
     compileOnly("io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.23.3")
-    compileOnly("org.redundent:kotlin-xml-builder:1.9.1")
 
+    implementation("org.redundent:kotlin-xml-builder:1.9.1")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.31")
     implementation("org.apache.servicemix.bundles:org.apache.servicemix.bundles.xpp3:1.1.4c_4")
     implementation("com.squareup.okhttp3:okhttp:4.11.0")
