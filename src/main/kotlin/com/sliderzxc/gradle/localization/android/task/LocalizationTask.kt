@@ -1,12 +1,17 @@
 package com.sliderzxc.gradle.localization.android.task
 
 import com.sliderzxc.gradle.defaults.requireLocalizations
+import com.sliderzxc.gradle.localization.core.result.Language
+import com.sliderzxc.gradle.localization.core.result.LocalizationResult
 import com.sliderzxc.gradle.localization.core.translator.GoogleTranslateRepository
+import com.sliderzxc.gradle.localization.core.xml.parser.ParserXMLContent
 import com.sliderzxc.gradle.localization.core.xml.parser.XmlParser
 import kotlinx.coroutines.async
 import kotlinx.coroutines.runBlocking
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.TaskAction
+import org.redundent.kotlin.xml.XmlVersion
+import org.redundent.kotlin.xml.xml
 import java.io.File
 
 internal abstract class LocalizationTask : DefaultTask() {
@@ -15,33 +20,49 @@ internal abstract class LocalizationTask : DefaultTask() {
     fun translate() {
         val localizationConfig = project.requireLocalizations()
         val coreProjectDirectory = project.layout.projectDirectory.asFile
-        val coreFile = File(coreProjectDirectory, "src/main/res/values/strings.xml").readText()
+        val childPath = "src/main/res/values"
+        val coreFile = File(coreProjectDirectory, "$childPath/strings.xml").readText()
         val englishStrings = XmlParser.parseXml(coreFile.trimIndent())
 
-        val a = runBlocking {
-            val b = async {
-                val langs = mutableListOf<Lang>()
+        val localizationResult = runBlocking {
+            async {
+                val languages = mutableListOf<Language>()
                 localizationConfig.languages.forEach { lang ->
-                    val strings = mutableListOf<String>()
-                    englishStrings.forEach { string ->
-                        strings.add(GoogleTranslateRepository.getTranslation(lang.code, string) ?: "")
+                    val xmlContents = mutableListOf<ParserXMLContent>()
+                    englishStrings.forEach { parserXMLContent ->
+                        val request = GoogleTranslateRepository.getTranslation(
+                            lang.code, parserXMLContent.value
+                        )
+                        xmlContents.add(
+                            ParserXMLContent(
+                                parserXMLContent.key, request ?: parserXMLContent.value
+                            )
+                        )
                     }
-                    langs.add(Lang(strings))
+                    languages.add(Language(lang, xmlContents))
                 }
-                LocalizationResult(langs)
+                LocalizationResult(languages)
+            }.await()
+        }
+
+        localizationResult.languages.forEach { language ->
+            val localizationFile = File(
+                coreProjectDirectory, "$childPath-${language.code}/strings.xml"
+            )
+            val xmlContent = xml("resources", encoding = "utf-8", version = XmlVersion.V10) {
+                language.content.forEach { parserXMLContent ->
+                    "string" {
+                        attribute(
+                            name = parserXMLContent.key,
+                            value = parserXMLContent.value
+                        )
+                    }
+                }
             }
-            b.await()
+            localizationFile.appendText(xmlContent.toString())
         }
 
         val localizedValuesFile = File(coreProjectDirectory, "src/main/res/values/some.txt")
-        localizedValuesFile.writeText(a.toString())
+        localizedValuesFile.writeText(localizationResult.toString())
     }
 }
-
-data class LocalizationResult(
-    val lang: List<Lang>
-)
-
-data class Lang(
-    val content: List<String>
-)
