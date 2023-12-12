@@ -19,20 +19,14 @@ object XmlParser {
             while (eventType != XmlPullParser.END_DOCUMENT) {
                 when (eventType) {
                     XmlPullParser.START_TAG -> {
-                        if (xmlPullParser.name == "string") {
-                            currentString = ""
-                        }
+                        if (xmlPullParser.name == "string") currentString = ""
                     }
                     XmlPullParser.TEXT -> {
-                        currentString?.let {
-                            currentString += xmlPullParser.text
-                        }
+                        currentString?.let { currentString += xmlPullParser.text }
                     }
                     XmlPullParser.END_TAG -> {
                         if (xmlPullParser.name == "string") {
-                            currentString?.let {
-                                stringList.add(it)
-                            }
+                            currentString?.let { stringList.add(it) }
                         }
                     }
                 }
