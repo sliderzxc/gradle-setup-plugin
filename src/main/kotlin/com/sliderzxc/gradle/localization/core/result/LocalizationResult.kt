@@ -8,6 +8,6 @@ data class LocalizationResult(
 )
 
 data class Language(
-    val code: LocalizationLanguage,
+    val localizationLanguage: LocalizationLanguage,
     val content: List<ParserXMLContent>
 )

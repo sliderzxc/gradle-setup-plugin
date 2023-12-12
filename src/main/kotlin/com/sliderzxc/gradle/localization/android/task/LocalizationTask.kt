@@ -47,7 +47,7 @@ internal abstract class LocalizationTask : DefaultTask() {
 
         localizationResult.languages.forEach { language ->
             val localizationFile = File(
-                coreProjectDirectory, "$childPath-${language.code}/strings.xml"
+                coreProjectDirectory, "$childPath-${language.localizationLanguage.code}/strings.xml"
             )
             val xmlContent = xml("resources", encoding = "utf-8", version = XmlVersion.V10) {
                 language.content.forEach { parserXMLContent ->
