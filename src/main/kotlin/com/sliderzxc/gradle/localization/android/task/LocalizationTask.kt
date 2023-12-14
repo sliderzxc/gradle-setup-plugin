@@ -1,6 +1,7 @@
 package com.sliderzxc.gradle.localization.android.task
 
 import com.sliderzxc.gradle.defaults.requireLocalizations
+import com.sliderzxc.gradle.localization.core.config.LocalizationLanguage
 import com.sliderzxc.gradle.localization.core.result.Language
 import com.sliderzxc.gradle.localization.core.result.LocalizationResult
 import com.sliderzxc.gradle.localization.core.translator.GoogleTranslateRepository
@@ -10,6 +11,9 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.runBlocking
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.TaskAction
+import org.redundent.kotlin.xml.Element
+import org.redundent.kotlin.xml.Namespace
+import org.redundent.kotlin.xml.TextElement
 import org.redundent.kotlin.xml.XmlVersion
 import org.redundent.kotlin.xml.xml
 import java.io.File
@@ -55,17 +59,32 @@ internal abstract class LocalizationTask : DefaultTask() {
             val xmlContent = xml("resources", encoding = "utf-8", version = XmlVersion.V10) {
                 language.content.forEach { parserXMLContent ->
                     "string" {
-                        attribute(
-                            name = parserXMLContent.key,
-                            value = parserXMLContent.value
-                        )
+                        attribute(name = "name", value = parserXMLContent.key)
+                        "" {
+
+                        }
                     }
                 }
             }
             localizationFile.writeText(xmlContent.toString())
         }
+    }
+}
 
-        val localizedValuesFile = File(coreProjectDirectory, "src/main/res/values/some.txt")
-        localizedValuesFile.writeText(localizationResult.toString())
+fun main() {
+    val localizationResult = LocalizationResult(
+        listOf(Language(LocalizationLanguage.Ukrainian, listOf(ParserXMLContent("some_name", "some_value"))))
+    )
+
+    localizationResult.languages.forEach { language ->
+        val xmlContent = xml("res", version = XmlVersion.V10, encoding = "utf-8", namespace = Namespace("dsds")) {
+            language.content.forEach { parserXMLContent ->
+                "string" {
+                    attribute(name = "name", value = parserXMLContent.key)
+                    -parserXMLContent.value
+                }
+            }
+        }
+        println(xmlContent)
     }
 }
