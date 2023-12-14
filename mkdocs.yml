@@ -15,7 +15,7 @@ copyright: Copyright &copy; 2023 Vadym Hrynyk
 # Page tree
 nav:
   - Getting started:
-    - Overview: getting-started/overview.md
+    - Overview: index.md
     - License: getting-started/license.md
 
 # Configuration
