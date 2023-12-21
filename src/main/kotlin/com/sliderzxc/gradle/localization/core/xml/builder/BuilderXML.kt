@@ -8,6 +8,6 @@ object BuilderXML {
         language.content.forEach {
             value += "<string name=\"${it.key}\">${it.value}</string>\n"
         }
-        return value.trimEnd()
+        return value
     }
 }
