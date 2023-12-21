@@ -8,6 +8,8 @@ class GradleSetupPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         target.tasks.register(
             "generateLocalizations", LocalizationTask::class.java
-        )
+        ) {
+            group = "gradle setup"
+        }
     }
 }

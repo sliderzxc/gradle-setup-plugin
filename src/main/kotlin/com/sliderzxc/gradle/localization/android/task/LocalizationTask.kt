@@ -5,6 +5,7 @@ import com.sliderzxc.gradle.localization.core.config.LocalizationLanguage
 import com.sliderzxc.gradle.localization.core.result.Language
 import com.sliderzxc.gradle.localization.core.result.LocalizationResult
 import com.sliderzxc.gradle.localization.core.translator.GoogleTranslateRepository
+import com.sliderzxc.gradle.localization.core.xml.builder.BuilderXML
 import com.sliderzxc.gradle.localization.core.xml.parser.ParserXMLContent
 import com.sliderzxc.gradle.localization.core.xml.parser.XmlParser
 import kotlinx.coroutines.async
@@ -56,35 +57,13 @@ internal abstract class LocalizationTask : DefaultTask() {
             localizedValuesDirectory.mkdirs()
 
             val localizationFile = File(localizedValuesDirectory, "strings.xml")
-            val xmlContent = xml("resources", encoding = "utf-8", version = XmlVersion.V10) {
-                language.content.forEach { parserXMLContent ->
-                    "string" {
-                        attribute(name = "name", value = parserXMLContent.key)
-                        "" {
-
-                        }
-                    }
-                }
-            }
-            localizationFile.writeText(xmlContent.toString())
+            val xmlContent = """
+                <?xml version="1.0" encoding="utf-8"?>
+                <resources>
+                    ${BuilderXML.buildStringFromLanguage(language)}
+                </resources>
+            """.trimIndent()
+            localizationFile.writeText(xmlContent)
         }
-    }
-}
-
-fun main() {
-    val localizationResult = LocalizationResult(
-        listOf(Language(LocalizationLanguage.Ukrainian, listOf(ParserXMLContent("some_name", "some_value"))))
-    )
-
-    localizationResult.languages.forEach { language ->
-        val xmlContent = xml("res", version = XmlVersion.V10, encoding = "utf-8", namespace = Namespace("dsds")) {
-            language.content.forEach { parserXMLContent ->
-                "string" {
-                    attribute(name = "name", value = parserXMLContent.key)
-                    -parserXMLContent.value
-                }
-            }
-        }
-        println(xmlContent)
     }
 }
