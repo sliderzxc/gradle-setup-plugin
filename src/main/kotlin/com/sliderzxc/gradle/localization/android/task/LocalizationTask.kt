@@ -58,25 +58,23 @@ internal abstract class LocalizationTask : DefaultTask() {
 
             val localizationFile = File(localizedValuesDirectory, "strings.xml")
             val xmlContent = """<?xml version="1.0" encoding="utf-8"?>
-                    <resources>
-                        ${BuilderXML.buildStringFromLanguage(language)}
-                    </resources>""".trimIndent()
+<resources>
+    ${BuilderXML.buildStringFromLanguage(language).trimEnd()}
+</resources>""".trimIndent()
             localizationFile.writeText(xmlContent)
         }
     }
 }
 
-fun main() {
+internal fun main() {
     val localizationResult = LocalizationResult(
-        listOf(Language(LocalizationLanguage.Ukrainian, listOf(ParserXMLContent("some_name", "some_value"))))
+        listOf(Language(LocalizationLanguage.Ukrainian, listOf(ParserXMLContent("some_name", "some_value"), ParserXMLContent("some_n", "some_v"))))
     )
     for (language in localizationResult.languages) {
-        val xmlContent = """
-            <?xml version="1.0" encoding="utf-8"?>
-            <resources>
-                ${BuilderXML.buildStringFromLanguage(language)}
-            </resources>
-        """.trimIndent()
+        val xmlContent = """<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    ${BuilderXML.buildStringFromLanguage(language).trimEnd()}
+</resources>""".trimIndent()
         println(xmlContent)
     }
 }

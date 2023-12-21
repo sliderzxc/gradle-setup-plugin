@@ -6,7 +6,7 @@ object BuilderXML {
     fun buildStringFromLanguage(language: Language): String {
         var value = ""
         language.content.forEach {
-            value += "<string name=\"${it.key}\">${it.value}</string>\n"
+            value += "<string name=\"${it.key}\">${it.value}</string>\n\t"
         }
         return value
     }
