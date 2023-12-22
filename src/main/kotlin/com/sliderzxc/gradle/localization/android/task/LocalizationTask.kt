@@ -12,11 +12,6 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.runBlocking
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.TaskAction
-import org.redundent.kotlin.xml.Element
-import org.redundent.kotlin.xml.Namespace
-import org.redundent.kotlin.xml.TextElement
-import org.redundent.kotlin.xml.XmlVersion
-import org.redundent.kotlin.xml.xml
 import java.io.File
 
 internal abstract class LocalizationTask : DefaultTask() {

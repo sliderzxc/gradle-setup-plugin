@@ -1,7 +1,6 @@
 package com.sliderzxc.gradle
 
 import com.sliderzxc.gradle.localization.android.task.LocalizationTask
-import com.sliderzxc.gradle.publishing.task.PublishingTask
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
