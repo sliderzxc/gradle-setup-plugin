@@ -4,7 +4,16 @@ import org.xmlpull.v1.XmlPullParser
 import org.xmlpull.v1.XmlPullParserFactory
 import java.io.StringReader
 
+/**
+ * Object for parsing XML strings into a list of ParserXMLContent objects.
+ */
 object XmlParser {
+    /**
+     * Parses an XML string into a list of ParserXMLContent objects.
+     *
+     * @param xmlString The XML string to be parsed.
+     * @return A list of ParserXMLContent objects representing the parsed content.
+     */
     fun parseXml(xmlString: String): List<ParserXMLContent> {
         val contentList = mutableListOf<ParserXMLContent>()
 
@@ -48,11 +57,20 @@ object XmlParser {
     }
 }
 
+/**
+ * Data class representing parsed XML content.
+ *
+ * @param key The identifier (name) of the XML element.
+ * @param value The text content of the XML element.
+ */
 data class ParserXMLContent(
     val key: String,
     val value: String
 )
 
+/**
+ * Main function demonstrating the usage of the XmlParser.
+ */
 fun main() {
     val xmlString = """
          <resources>
