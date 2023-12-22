@@ -14,11 +14,18 @@ import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.TaskAction
 import java.io.File
 
+/**
+ * Custom Gradle task for performing localization using the Google Translate API.
+ */
 internal abstract class LocalizationTask : DefaultTask() {
 
+    /**
+     * Task action for performing localization.
+     */
     @TaskAction
     fun translate() {
         val localizationConfig = project.requireLocalizations()
+
         val coreProjectDirectory = project.layout.projectDirectory.asFile
         val childPath = "src/main/res/values"
         val coreFile = File(coreProjectDirectory, "$childPath/strings.xml").readText()
@@ -58,18 +65,5 @@ internal abstract class LocalizationTask : DefaultTask() {
 </resources>""".trimIndent()
             localizationFile.writeText(xmlContent)
         }
-    }
-}
-
-internal fun main() {
-    val localizationResult = LocalizationResult(
-        listOf(Language(LocalizationLanguage.Ukrainian, listOf(ParserXMLContent("some_name", "some_value"), ParserXMLContent("some_n", "some_v"))))
-    )
-    for (language in localizationResult.languages) {
-        val xmlContent = """<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    ${BuilderXML.buildStringFromLanguage(language).trimEnd()}
-</resources>""".trimIndent()
-        println(xmlContent)
     }
 }
