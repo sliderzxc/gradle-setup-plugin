@@ -9,6 +9,11 @@ import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
+/**
+ * Sets up the config for an Android library project or KMP using platform android.
+ *
+ * @param config The Android configuration for the project.
+ */
 fun Project.setupAndroidLibrary(
     config: AndroidConfig = requireDefaults()
 ) = setupAndroidCommon(config)
