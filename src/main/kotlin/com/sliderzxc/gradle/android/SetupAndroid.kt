@@ -18,6 +18,14 @@ fun Project.setupAndroidLibrary(
     config: AndroidConfig = requireDefaults()
 ) = setupAndroidCommon(config)
 
+/**
+ * Sets up common Android configurations for the project.
+ *
+ * This function configures essential Android settings for a Gradle project, such as namespace,
+ * compile SDK version, default configurations, and Kotlin compilation options.
+ *
+ * @param config The Android configuration for the project.
+ */
 internal fun Project.setupAndroidCommon(config: AndroidConfig) {
     extensions.configure<BaseExtension> {
         namespace = config.namespace
