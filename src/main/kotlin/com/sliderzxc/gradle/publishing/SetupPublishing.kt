@@ -9,6 +9,11 @@ import com.sliderzxc.gradle.publishing.platforms.multiplatform.setupMultiplatfor
 import org.gradle.api.Project
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
+/**
+ * Configures the publishing settings for a project based on its type (multiplatform or Android).
+ *
+ * @param publishingConfig The publishing configuration.
+ */
 fun Project.setupPublishing(
     publishingConfig: PublishingConfig = requireDefaults()
 ) {

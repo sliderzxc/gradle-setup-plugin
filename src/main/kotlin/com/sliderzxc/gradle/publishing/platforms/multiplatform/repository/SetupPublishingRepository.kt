@@ -9,6 +9,11 @@ import org.gradle.kotlin.dsl.withType
 import org.gradle.plugins.signing.Sign
 import org.gradle.plugins.signing.SigningExtension
 
+/**
+ * Configures the publishing repository settings for a project using the Maven Publish plugin.
+ *
+ * @param config The publishing configuration.
+ */
 internal fun Project.setupPublishingRepository(config: PublishingConfig) {
     val signingTasks = tasks.withType<Sign>()
 
@@ -28,6 +33,7 @@ internal fun Project.setupPublishingRepository(config: PublishingConfig) {
         repositories {
             maven {
                 val isSnapshot = version.toString().endsWith("SNAPSHOT")
+
                 url = uri(
                     if (isSnapshot) config.libraryConfig.snapshotRepository
                     else config.libraryConfig.releaseRepository

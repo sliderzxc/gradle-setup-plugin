@@ -3,6 +3,11 @@ package com.sliderzxc.gradle.publishing.platforms.multiplatform.pom
 import com.sliderzxc.gradle.publishing.config.PublishingConfig
 import org.gradle.api.publish.maven.MavenPublication
 
+/**
+ * Configures the POM settings for a MavenPublication based on the provided PublishingConfig.
+ *
+ * @param config The publishing configuration.
+ */
 internal fun MavenPublication.setupPublishingPom(config: PublishingConfig) {
     pom {
         name.set(config.libraryConfig.name)

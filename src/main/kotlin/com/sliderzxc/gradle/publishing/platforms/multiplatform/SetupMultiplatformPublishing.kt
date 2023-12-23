@@ -10,6 +10,11 @@ import org.gradle.api.publish.maven.MavenPublication
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.withType
 
+/**
+ * Configures the publishing settings for a multiplatform project using the Maven Publish plugin.
+ *
+ * @param config The publishing configuration.
+ */
 internal fun Project.setupMultiplatformPublishing(config: PublishingConfig) {
     applyMavenPublishPlugin()
     applySigningPlugin()
@@ -20,6 +25,7 @@ internal fun Project.setupMultiplatformPublishing(config: PublishingConfig) {
     extensions.configure<PublishingExtension> {
         publications.withType<MavenPublication>().configureEach {
             artifact(project.ensureJavadocJarTask())
+
             setupPublishingPom(config)
         }
     }
