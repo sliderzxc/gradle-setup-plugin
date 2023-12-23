@@ -9,6 +9,11 @@ import org.gradle.api.Project
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.dsl.kotlinExtension
 
+/**
+ * Configures a Kotlin multiplatform project.
+ *
+ * @param multiplatformConfig The configuration for the multiplatform project.
+ */
 fun Project.setupMultiplatform(
     multiplatformConfig: MultiplatformConfig? = requireDefaults()
 ) {
@@ -36,12 +41,20 @@ fun Project.setupMultiplatform(
         }
     }
 
-    if (multiplatformConfig?.platforms?.contains(Platform.Android) == true) setupAndroidLibrary()
+    if (multiplatformConfig?.platforms?.contains(Platform.Android) == true) {
+        setupAndroidLibrary()
+    }
 }
 
+/**
+ * Gets the KotlinMultiplatformExtension from the project.
+ */
 internal val Project.multiplatformExtension: KotlinMultiplatformExtension
     get() = kotlinExtension as KotlinMultiplatformExtension
 
+/**
+ * Functional interface for configuring a KotlinMultiplatformExtension.
+ */
 fun interface MultiplatformConfigurator {
     operator fun KotlinMultiplatformExtension.invoke()
 }

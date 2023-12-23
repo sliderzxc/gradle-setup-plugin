@@ -10,10 +10,18 @@ import org.jetbrains.kotlin.gradle.plugin.KotlinTarget
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 import org.jetbrains.kotlin.konan.target.Family
 
+/**
+ * Extension function for setting up Kotlin multiplatform source sets.
+ *
+ * @param block Configuration block for multiplatform source sets.
+ */
 fun KotlinMultiplatformExtension.setupSourceSets(block: MultiplatformSourceSets.() -> Unit) {
     DefaultMultiplatformSourceSets(targets, sourceSets).block()
 }
 
+/**
+ * Interface for managing and categorizing different source sets based on Kotlin targets.
+ */
 interface MultiplatformSourceSets : NamedDomainObjectContainer<KotlinSourceSet> {
     val common: SourceSetBundle
     val allSet: Set<SourceSetBundle>
@@ -27,6 +35,12 @@ interface MultiplatformSourceSets : NamedDomainObjectContainer<KotlinSourceSet> 
     val macosSet: Set<SourceSetBundle>
 }
 
+/**
+ * Default implementation of [MultiplatformSourceSets].
+ *
+ * @property targets Named domain object collection for Kotlin targets.
+ * @property sourceSets Named domain object container for Kotlin source sets.
+ */
 class DefaultMultiplatformSourceSets(
     private val targets: NamedDomainObjectCollection<KotlinTarget>,
     private val sourceSets: NamedDomainObjectContainer<KotlinSourceSet>,
