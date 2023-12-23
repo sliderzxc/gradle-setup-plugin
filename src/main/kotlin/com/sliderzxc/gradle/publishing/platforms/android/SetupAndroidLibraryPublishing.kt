@@ -13,6 +13,11 @@ import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.get
 import org.gradle.kotlin.dsl.register
 
+/**
+ * Configures the publishing settings for an Android library using the Maven Publish plugin.
+ *
+ * @param config The publishing configuration.
+ */
 internal fun Project.setupAndroidLibraryPublishing(config: PublishingConfig) {
     applyMavenPublishPlugin()
     applySigningPlugin()
